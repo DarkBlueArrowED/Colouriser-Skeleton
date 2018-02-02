@@ -153,7 +153,7 @@
                         <outlet property="homeButton" destination="qxX-95-8IK" id="Ur5-Mv-KTV"/>
                         <outlet property="hotButton" destination="Bgm-sI-gVg" id="M4N-75-DD4"/>
                         <outlet property="locationButton" destination="ats-H3-hjJ" id="CyB-qB-foQ"/>
-                        <outlet property="menuCurveImageView" destination="JrI-e1-HUt" id="tuX-WD-CLk"/>
+                        <outlet property="menuCurveImageView" destination="JrI-e1-HUt" id="0vu-Pj-1qg"/>
                         <outlet property="menuView" destination="4Xd-eX-Lc6" id="MfU-Mt-KVe"/>
                         <outlet property="profileImageView" destination="DK3-a1-9jE" id="08I-ud-Z0M"/>
                         <outlet property="screenCoverButton" destination="hKa-4e-vEW" id="zul-2a-7qL"/>
@@ -236,6 +236,9 @@
                                                             <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <segue destination="BYZ-38-t0r" kind="show" identifier="ContinueSegue" id="J9x-o2-l04"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -407,6 +410,6 @@
         <image name="backround" width="1080" height="1920"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UTs-j9-0Kg"/>
+        <segue reference="J9x-o2-l04"/>
     </inferredMetricsTieBreakers>
 </document>

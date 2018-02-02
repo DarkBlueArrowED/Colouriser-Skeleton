@@ -9,9 +9,11 @@
 import UIKit
 
 class OnboardingVC: UIViewController, UITextFieldDelegate {
-    
+
     @IBOutlet weak var nameTextField: UITextField!
     
+    let mainViewController = ViewController()
+
     override func viewDidLoad() {
         nameTextField.delegate = self
         super.viewDidLoad()
@@ -23,6 +25,14 @@ class OnboardingVC: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameTextField.resignFirstResponder()
+        return true
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if (nameTextField.text?.isEmpty)!  {
+            
+            return false
+        }
         return true
     }
 }

@@ -8,6 +8,21 @@
 
 import UIKit
 
-class OnboardingVC: UIViewController {
+class OnboardingVC: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    override func viewDidLoad() {
+        nameTextField.delegate = self
+        super.viewDidLoad()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+        return true
+    }
 }

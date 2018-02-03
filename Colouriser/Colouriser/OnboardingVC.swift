@@ -11,8 +11,6 @@ import UIKit
 class OnboardingVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var nameTextField: UITextField!
-    
-    let mainViewController = ViewController()
 
     override func viewDidLoad() {
         nameTextField.delegate = self
@@ -30,7 +28,6 @@ class OnboardingVC: UIViewController, UITextFieldDelegate {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (nameTextField.text?.isEmpty)!  {
-            
             return false
         }
         return true

@@ -187,7 +187,7 @@
 				TargetAttributes = {
 					4DBD8B241F1C23E000B13C36 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = PJRK7GHP8Q;
+						DevelopmentTeam = GUUT9QSKM3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -382,7 +382,7 @@
 		4DBD8B431F1C23E100B13C36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = PJRK7GHP8Q;
+				DEVELOPMENT_TEAM = GUUT9QSKM3;
 				INFOPLIST_FILE = Colouriser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -395,7 +395,7 @@
 		4DBD8B441F1C23E100B13C36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = PJRK7GHP8Q;
+				DEVELOPMENT_TEAM = GUUT9QSKM3;
 				INFOPLIST_FILE = Colouriser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

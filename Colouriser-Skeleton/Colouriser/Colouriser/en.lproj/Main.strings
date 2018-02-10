@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "2nW-Ne-ORM"; */
+"2nW-Ne-ORM.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "EIQ-SB-Fkm"; */
+"EIQ-SB-Fkm.text" = "Settings";
+
+/* Class = "UILabel"; text = "Activity"; ObjectID = "FBA-HL-Zdp"; */
+"FBA-HL-Zdp.text" = "Activity";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "HhV-2e-GCz"; */
+"HhV-2e-GCz.normalTitle" = "Continue";
+
+/* Class = "UILabel"; text = "Welcome!"; ObjectID = "PaD-FP-CYY"; */
+"PaD-FP-CYY.text" = "Welcome!";
+
+/* Class = "UILabel"; text = "Enter your name to get started"; ObjectID = "VfX-nt-Z6h"; */
+"VfX-nt-Z6h.text" = "Enter your name to get started";
+
+/* Class = "UILabel"; text = "Let's personalize your experience!"; ObjectID = "X02-CZ-kts"; */
+"X02-CZ-kts.text" = "Let's personalize your experience!";
+
+/* Class = "UITextField"; placeholder = "Your Name"; ObjectID = "eiX-p6-3I9"; */
+"eiX-p6-3I9.placeholder" = "Your Name";
+
+/* Class = "UINavigationItem"; title = "Activity"; ObjectID = "xeE-nQ-biW"; */
+"xeE-nQ-biW.title" = "Activity";

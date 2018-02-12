@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +17,7 @@
         <!--Activity-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Colouriser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Colouriser" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -152,7 +153,7 @@
                         <outlet property="homeButton" destination="qxX-95-8IK" id="Ur5-Mv-KTV"/>
                         <outlet property="hotButton" destination="Bgm-sI-gVg" id="M4N-75-DD4"/>
                         <outlet property="locationButton" destination="ats-H3-hjJ" id="CyB-qB-foQ"/>
-                        <outlet property="menuCurveImageView" destination="JrI-e1-HUt" id="tuX-WD-CLk"/>
+                        <outlet property="menuCurveImageView" destination="JrI-e1-HUt" id="0vu-Pj-1qg"/>
                         <outlet property="menuView" destination="4Xd-eX-Lc6" id="MfU-Mt-KVe"/>
                         <outlet property="profileImageView" destination="DK3-a1-9jE" id="08I-ud-Z0M"/>
                         <outlet property="screenCoverButton" destination="hKa-4e-vEW" id="zul-2a-7qL"/>
@@ -166,7 +167,7 @@
         <!--OnboardingVC-->
         <scene sceneID="iGu-05-Vey">
             <objects>
-                <viewController id="2Mk-Rx-dya" customClass="OnboardingVC" sceneMemberID="viewController">
+                <viewController id="2Mk-Rx-dya" customClass="OnboardingVC" customModule="Colouriser" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5fY-Wn-S7e"/>
                         <viewControllerLayoutGuide type="bottom" id="L28-Xm-5fV"/>
@@ -210,11 +211,11 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField verifyAmbiguity="off" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eiX-p6-3I9">
+                                                <textField verifyAmbiguity="off" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eiX-p6-3I9" userLabel="Name">
                                                     <rect key="frame" x="0.0" y="39" width="248.5" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
                                                 <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhV-2e-GCz" customClass="UIButtonX" customModule="Colouriser" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="84" width="248.5" height="50"/>
@@ -235,6 +236,9 @@
                                                             <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="ContinueClicked:" destination="2Mk-Rx-dya" eventType="touchUpInside" id="Wr5-gU-Htf"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -254,6 +258,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="nameTextField" destination="eiX-p6-3I9" id="eXs-zk-2BK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mB4-wH-olO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -403,6 +410,6 @@
         <image name="backround" width="1080" height="1920"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Eij-jl-gtC"/>
+        <segue reference="UTs-j9-0Kg"/>
     </inferredMetricsTieBreakers>
 </document>

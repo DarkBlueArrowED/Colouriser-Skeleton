@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  SidebarMenu
+//  Colouriser
 //
-//  Created by Mark Moeykens on 7/16/17.
-//  Copyright © 2017 Mark Moeykens. All rights reserved.
+//  Created by Group 1 on 1/1/18.
+//  Copyright © 2018 Group 1. All rights reserved.
 //
 
 import UIKit
@@ -16,6 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // This is designed to Stop the user from seeing the front page after the first time use
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var initialViewController: UIViewController
+        
+        if (UserDefaults.standard.value(forKey: "name") as? String) != nil {
+            initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController")
+        } else {
+            initialViewController = storyboard.instantiateInitialViewController()!
+        }
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
         return true
     }
 

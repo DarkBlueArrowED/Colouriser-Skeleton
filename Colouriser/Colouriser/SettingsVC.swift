@@ -2,8 +2,8 @@
 //  SettingVC.swift
 //  Colouriser
 //
-//  Created by Walter Bassage on 27/01/2018.
-//  Copyright © 2018 Mark Moeykens. All rights reserved.
+//  Created by Group 1 on 1/1/18.
+//  Copyright © 2018 Group 1. All rights reserved.
 //
 
 import UIKit

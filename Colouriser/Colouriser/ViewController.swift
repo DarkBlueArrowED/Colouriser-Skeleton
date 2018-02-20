@@ -6,10 +6,10 @@
 //  Copyright © 2018 Group 1. All rights reserved.
 //
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-//    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var screenCoverButton: UIButton!
     @IBOutlet weak var menuView: UIView!
     
@@ -20,29 +20,130 @@ class ViewController: UIViewController {
     @IBOutlet weak var breakButton: UIButton!
     @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var hotButton: UIButton!
-    @IBOutlet weak var cameraView: UIImageView!
     
     @IBOutlet weak var menuCurveImageView: UIImageView!
-
-// For removed table
-//    var tableData: [Model] = []
+    
+    // live camera filter
+    var captureSession = AVCaptureSession()
+    var backCamera: AVCaptureDevice?
+    var frontCamera: AVCaptureDevice?
+    var currentCamera: AVCaptureDevice?
+    var photoOutput: AVCapturePhotoOutput?
+    var orientation: AVCaptureVideoOrientation = .portrait
+    let context = CIContext()
+    
+    @IBOutlet weak var filteredImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//loads GUI menu body main
         menuCurveImageView.image = #imageLiteral(resourceName: "MenuCurve")
-//        tableView.dataSource = self
-        
-        Data.getData { (data) in
-// For removed table please refere to ¯\_(ツ)_/¯
-//            self.tableData = data
-//            self.tableView.reloadData()
-        }
         
         hideMenu()
+        setupDevice()
+        setupInputOutput()
     }
     
-/////////////////////////////////////////// For GUI Basic Functions and Side MENU ///////////////////////////////////////////////////////////////////////////////////////
+    func setupDevice() {
+        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: AVCaptureDevice.Position.unspecified)
+        let devices = deviceDiscoverySession.devices
+        
+        for device in devices {
+            if device.position == AVCaptureDevice.Position.back {
+                backCamera = device
+            }
+            else if device.position == AVCaptureDevice.Position.front {
+                frontCamera = device
+            }
+        }
+        
+        currentCamera = backCamera
+    }
+    
+    func setupInputOutput() {
+        do {
+            setupCorrectFramerate(currentCamera: currentCamera!)
+            let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
+            //depending what format you choose, the speed at which the pixels get filtered increases
+            captureSession.sessionPreset = AVCaptureSession.Preset.vga640x480
+            if captureSession.canAddInput(captureDeviceInput) {
+                captureSession.addInput(captureDeviceInput)
+            }
+            let videoOutput = AVCaptureVideoDataOutput()
+            
+            videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sample buffer delegate", attributes: []))
+            if captureSession.canAddOutput(videoOutput) {
+                captureSession.addOutput(videoOutput)
+            }
+            captureSession.startRunning()
+        } catch {
+            print(error)
+        }
+    }
+    
+    func setupCorrectFramerate(currentCamera: AVCaptureDevice) {
+        for vFormat in currentCamera.formats {
+            //see available types
+            //print("\(vFormat) \n")
+            
+            var ranges = vFormat.videoSupportedFrameRateRanges as [AVFrameRateRange]
+            let frameRates = ranges[0]
+            
+            do {
+                //set to 240fps - available types are: 30, 60, 120 and 240 and custom
+                // lower framerates cause major stuttering
+                if frameRates.maxFrameRate == 240 {
+                    try currentCamera.lockForConfiguration()
+                    currentCamera.activeFormat = vFormat as AVCaptureDevice.Format
+                    //for custom framerate set min max activeVideoFrameDuration to whatever you like, e.g. 1 and 180
+                    currentCamera.activeVideoMinFrameDuration = frameRates.minFrameDuration
+                    currentCamera.activeVideoMaxFrameDuration = frameRates.maxFrameDuration
+                }
+            }
+            catch {
+                print("Could not set active format")
+                print(error)
+            }
+        }
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        connection.videoOrientation = orientation
+        let videoOutput = AVCaptureVideoDataOutput()
+        videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
+        
+        let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        let cameraImage = CIImage(cvImageBuffer: pixelBuffer!)
+        
+        
+        DispatchQueue.main.async {
+
+            self.filteredImage.image = self.doShitWithGGBAImage(givenImage: cameraImage)
+            
+            // Show default camera image
+            //self.filteredImage.image = UIImage(ciImage: cameraImage)
+        }
+    }
+    
+    func doShitWithGGBAImage(givenImage: CIImage) -> UIImage {
+        
+        let captureImage = convert(cmage: givenImage)
+        
+        let rgbaImage = RGBAImage(image: captureImage)
+        
+        let returnedImage = ImageProcess.setRGB(rgbaImage!, colourBlindness: "protanopia").toUIImage()
+        
+        return returnedImage!
+    }
+    
+    func convert(cmage:CIImage) -> UIImage {
+        let context:CIContext = CIContext.init(options: nil)
+        let cgImage:CGImage = context.createCGImage(cmage, from: cmage.extent)!
+        let image:UIImage = UIImage.init(cgImage: cgImage)
+        return image
+    }
+    
+    
+/* For GUI Basic Functions and Side MENU */
     @IBAction func menuTapped(_ sender: UIButton) {
         showMenu()
     }
@@ -116,25 +217,5 @@ class ViewController: UIViewController {
     }
 }
 
-// For old data table stuff, I can remember what ¯\_(ツ)_/¯
-//extension ViewController: UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return tableData.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell") as! TableViewCell
-//        cell.setup(model: tableData[indexPath.row])
-//        return cell
-//    }
-//}
-
-/////////////////////////////////////////// End of GUI Basic Functions and Side MENU /////////////////////////////////////////////////////////////////////////////////////
- /*
- Notes:
-
-
- */
 
 

@@ -44,7 +44,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKa-4e-vEW">
-                                <rect key="frame" x="0.0" y="-18" width="375" height="671"/>
+                                <rect key="frame" x="0.0" y="-1" width="375" height="671"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.14157319225921688" green="0.12073588170025924" blue="0.19151565310000007" alpha="0.80238045302013428" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -203,7 +203,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem id="ddM-m2-gHh"/>
-                                    <tabBarItem tag="1" title="Text a Friend" id="GRs-By-gP3"/>
+                                    <tabBarItem tag="1" systemItem="contacts" id="GRs-By-gP3"/>
                                 </items>
                             </tabBar>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gFj-iJ-a5h">
@@ -218,6 +218,7 @@
                     </view>
                     <connections>
                         <outlet property="filteredImage" destination="fBF-vf-yLK" id="U16-1v-skO"/>
+                        <outlet property="tabBar" destination="fLM-cv-rdX" id="Mnh-fn-Coa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hK-ls-V7x" userLabel="First Responder" sceneMemberID="firstResponder"/>

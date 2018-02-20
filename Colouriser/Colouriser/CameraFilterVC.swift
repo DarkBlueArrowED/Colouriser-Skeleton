@@ -10,7 +10,7 @@ import AVFoundation
 import UIKit
 import MessageUI
 
-class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, MFMessageComposeViewControllerDelegate {
+class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, MFMessageComposeViewControllerDelegate, UITabBarDelegate {
     
     // live camera filter
     var captureSession = AVCaptureSession()
@@ -23,8 +23,11 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
 
     @IBOutlet weak var filteredImage: UIImageView!
     
+    @IBOutlet weak var tabBar: UITabBar!
     
     override func viewDidLoad() {
+        tabBar.delegate = self
+        
         setupDevice()
         setupInputOutput()
     }
@@ -191,7 +194,7 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             let smsController = MFMessageComposeViewController()
             
             smsController.body = "Can you please tell me what colour this is?"
-            let screenshotImageData: Data = UIImagePNGRepresentation(screenshotImage!)!
+            let screenshotImageData = UIImagePNGRepresentation(screenshotImage!)!
             smsController.addAttachmentData(screenshotImageData, typeIdentifier: "data", filename: "screenshotImage.png")
             smsController.messageComposeDelegate = self
             self.present(smsController, animated: true, completion: nil)
@@ -201,17 +204,16 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         }
     }
     
-    
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
         switch item.tag {
             
         case 0:
+            //print("option 1")
             break
             
         case 1:
-            print("show options")
-            // show options
+            //print("option 2")
+            
             sendSmsToFriend()
             break
             

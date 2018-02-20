@@ -31,6 +31,7 @@
 		54B5521F203C300900CCABC2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B55219203C300900CCABC2 /* Extensions.swift */; };
 		54B55220203C300900CCABC2 /* CustomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B5521A203C300900CCABC2 /* CustomFilter.swift */; };
 		54B55221203C300900CCABC2 /* ByteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B5521B203C300900CCABC2 /* ByteImage.swift */; };
+		54C62C3B203C44640028C29E /* CameraFilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C62C3A203C44640028C29E /* CameraFilterVC.swift */; };
 		B3B3C0FC201C9C7D001B1911 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B3C0FB201C9C7D001B1911 /* SettingsVC.swift */; };
 		B3B3C0FE201CA014001B1911 /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B3C0FD201CA014001B1911 /* GalleryVC.swift */; };
 		B3B3C100201CA0C2001B1911 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B3C0FF201CA0C2001B1911 /* OnboardingVC.swift */; };
@@ -64,6 +65,7 @@
 		54B55219203C300900CCABC2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		54B5521A203C300900CCABC2 /* CustomFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFilter.swift; sourceTree = "<group>"; };
 		54B5521B203C300900CCABC2 /* ByteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteImage.swift; sourceTree = "<group>"; };
+		54C62C3A203C44640028C29E /* CameraFilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraFilterVC.swift; sourceTree = "<group>"; };
 		B3B3C0FB201C9C7D001B1911 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		B3B3C0FD201CA014001B1911 /* GalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVC.swift; sourceTree = "<group>"; };
 		B3B3C0FF201CA0C2001B1911 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				B3B3C0FB201C9C7D001B1911 /* SettingsVC.swift */,
 				B3B3C0FD201CA014001B1911 /* GalleryVC.swift */,
 				B3B3C0FF201CA0C2001B1911 /* OnboardingVC.swift */,
+				54C62C3A203C44640028C29E /* CameraFilterVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				4DBD8B531F1C27AE00B13C36 /* UIImageViewWithMaskAndShadow.swift in Sources */,
 				B3B3C0FE201CA014001B1911 /* GalleryVC.swift in Sources */,
 				4DBD8B5B1F1C27AE00B13C36 /* UIViewXRadialGradient.swift in Sources */,
+				54C62C3B203C44640028C29E /* CameraFilterVC.swift in Sources */,
 				4DBD8B591F1C27AE00B13C36 /* UIViewControllerX.swift in Sources */,
 				4DBD8B521F1C27AE00B13C36 /* UIButtonX.swift in Sources */,
 				4DBD8B361F1C23E100B13C36 /* TableViewCell.swift in Sources */,
@@ -408,7 +412,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = GUUT9QSKM3;
 				INFOPLIST_FILE = Colouriser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walterbassage.Colouriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -421,7 +425,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = GUUT9QSKM3;
 				INFOPLIST_FILE = Colouriser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walterbassage.Colouriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -1,15 +1,16 @@
 //
-//  CameraFilterVC.swift
+//  AskAFriendVC.swift
 //  Colouriser
 //
-//  Created by Vitaliy Krynytskyy on 20/02/2018.
-//  Copyright © 2018 Vitaliy Krynytskyy. All rights reserved.
+//  Created by Vitaliy Krynytskyy on 21/02/2018.
+//  Copyright © 2018 Mark Moeykens. All rights reserved.
 //
 
 import AVFoundation
 import UIKit
+import MessageUI
 
-class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+class AskAFriendVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate, MFMessageComposeViewControllerDelegate {
     
     // live camera filter
     var captureSession = AVCaptureSession()
@@ -19,12 +20,16 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var photoOutput: AVCapturePhotoOutput?
     var orientation: AVCaptureVideoOrientation = .portrait
     let context = CIContext()
-
+    
     @IBOutlet weak var filteredImage: UIImageView!
     
     override func viewDidLoad() {
         setupDevice()
         setupInputOutput()
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func setupDevice() {
@@ -48,8 +53,8 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             //setupCorrectFramerate(currentCamera: currentCamera!)
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             //depending what format you choose, the speed at which the pixels get filtered increases
-            captureSession.sessionPreset = AVCaptureSession.Preset.low
-
+            captureSession.sessionPreset = AVCaptureSession.Preset.high
+            
             if captureSession.canAddInput(captureDeviceInput) {
                 captureSession.addInput(captureDeviceInput)
             }
@@ -76,7 +81,7 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             do {
                 //set to 240fps - available types are: 30, 60, 120 and 240 and custom
                 // lower framerates cause major stuttering
-                if frameRates.maxFrameRate == 60 {
+                if frameRates.maxFrameRate == 120 {
                     try currentCamera.lockForConfiguration()
                     currentCamera.activeFormat = vFormat as AVCaptureDevice.Format
                     //for custom framerate set min max activeVideoFrameDuration to whatever you like, e.g. 1 and 180
@@ -101,24 +106,11 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         
         DispatchQueue.main.async {
-            
-            self.filteredImage.image = self.doShitWithGGBAImage(givenImage: cameraImage)
-            
             // Show default camera image
-            //self.filteredImage.image = UIImage(ciImage: cameraImage)
+            self.filteredImage.image = UIImage(ciImage: cameraImage)
         }
     }
     
-    func doShitWithGGBAImage(givenImage: CIImage) -> UIImage {
-        
-        let captureImage = convert(cmage: givenImage)
-        
-        let rgbaImage = RGBAImage(image: captureImage)
-        
-        let returnedImage = ImageProcess.setRGB(rgbaImage!, colourBlindness: "protanopia").toUIImage()
-        
-        return returnedImage!
-    }
     
     func convert(cmage:CIImage) -> UIImage {
         let context:CIContext = CIContext.init(options: nil)
@@ -173,4 +165,33 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             break
         }
     }
+    
+    func sendSmsToFriend() {
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let screenshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        if MFMessageComposeViewController.canSendText() && MFMessageComposeViewController.canSendAttachments() {
+            
+            let smsController = MFMessageComposeViewController()
+            
+            smsController.body = "Can you please tell me what colour this is?"
+            let screenshotImageData = UIImagePNGRepresentation(screenshotImage!)!
+            smsController.addAttachmentData(screenshotImageData, typeIdentifier: "data", filename: "screenshotImage.png")
+            smsController.messageComposeDelegate = self
+            self.present(smsController, animated: true, completion: nil)
+            
+        } else {
+            print("User cannot send texts or attachments")
+        }
+    }
+    
+    @IBAction func msgFriendButtonPressed(_ sender: Any) {
+        sendSmsToFriend()
+    }
+    
+    
+    
 }
+

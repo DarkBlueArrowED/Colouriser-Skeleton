@@ -26,6 +26,7 @@
 		4DBD8B5B1F1C27AE00B13C36 /* UIViewXRadialGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD8B501F1C27AE00B13C36 /* UIViewXRadialGradient.swift */; };
 		4DBD8B5C1F1C27AE00B13C36 /* UIVisualEffectViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD8B511F1C27AE00B13C36 /* UIVisualEffectViewX.swift */; };
 		543AEF1E203D965B000B0AB0 /* AskAFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543AEF1D203D965B000B0AB0 /* AskAFriendVC.swift */; };
+		5464A7FB204589E900C03B85 /* ColourPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5464A7FA204589E900C03B85 /* ColourPickerVC.swift */; };
 		54B5521C203C300900CCABC2 /* ImageProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B55216203C300800CCABC2 /* ImageProcess.swift */; };
 		54B5521D203C300900CCABC2 /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B55217203C300900CCABC2 /* RGBAImage.swift */; };
 		54B5521E203C300900CCABC2 /* ColourBlindHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B55218203C300900CCABC2 /* ColourBlindHelper.swift */; };
@@ -61,6 +62,7 @@
 		4DBD8B501F1C27AE00B13C36 /* UIViewXRadialGradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewXRadialGradient.swift; sourceTree = "<group>"; };
 		4DBD8B511F1C27AE00B13C36 /* UIVisualEffectViewX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVisualEffectViewX.swift; sourceTree = "<group>"; };
 		543AEF1D203D965B000B0AB0 /* AskAFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskAFriendVC.swift; sourceTree = "<group>"; };
+		5464A7FA204589E900C03B85 /* ColourPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColourPickerVC.swift; sourceTree = "<group>"; };
 		54B55216203C300800CCABC2 /* ImageProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageProcess.swift; sourceTree = "<group>"; };
 		54B55217203C300900CCABC2 /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
 		54B55218203C300900CCABC2 /* ColourBlindHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourBlindHelper.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				B3B3C0FF201CA0C2001B1911 /* OnboardingVC.swift */,
 				54C62C3A203C44640028C29E /* CameraFilterVC.swift */,
 				543AEF1D203D965B000B0AB0 /* AskAFriendVC.swift */,
+				5464A7FA204589E900C03B85 /* ColourPickerVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				543AEF1E203D965B000B0AB0 /* AskAFriendVC.swift in Sources */,
 				4DBD8B521F1C27AE00B13C36 /* UIButtonX.swift in Sources */,
 				4DBD8B361F1C23E100B13C36 /* TableViewCell.swift in Sources */,
+				5464A7FB204589E900C03B85 /* ColourPickerVC.swift in Sources */,
 				4DBD8B571F1C27AE00B13C36 /* UITextFieldX.swift in Sources */,
 				4DBD8B2E1F1C23E100B13C36 /* Data.swift in Sources */,
 				54B5521D203C300900CCABC2 /* RGBAImage.swift in Sources */,

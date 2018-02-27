@@ -1,9 +1,15 @@
-
+//
+//  ViewController.swift
+//  Colouriser
+//
+//  Created by Group 1 on 1/1/18.
+//  Copyright © 2018 Group 1. All rights reserved.
+//
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-//    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var screenCoverButton: UIButton!
     @IBOutlet weak var menuView: UIView!
     
@@ -14,29 +20,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var breakButton: UIButton!
     @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var hotButton: UIButton!
-    @IBOutlet weak var cameraView: UIImageView!
     
     @IBOutlet weak var menuCurveImageView: UIImageView!
-
-// For removed table
-//    var tableData: [Model] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//loads GUI menu body main
         menuCurveImageView.image = #imageLiteral(resourceName: "MenuCurve")
-//        tableView.dataSource = self
-        
-        Data.getData { (data) in
-// For removed table please refere to ¯\_(ツ)_/¯
-//            self.tableData = data
-//            self.tableView.reloadData()
-        }
         
         hideMenu()
     }
     
-/////////////////////////////////////////// For GUI Basic Functions and Side MENU ///////////////////////////////////////////////////////////////////////////////////////
+/* For GUI Basic Functions and Side MENU */
     @IBAction func menuTapped(_ sender: UIButton) {
         showMenu()
     }
@@ -110,25 +104,5 @@ class ViewController: UIViewController {
     }
 }
 
-// For old data table stuff, I can remember what ¯\_(ツ)_/¯
-//extension ViewController: UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return tableData.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell") as! TableViewCell
-//        cell.setup(model: tableData[indexPath.row])
-//        return cell
-//    }
-//}
-
-/////////////////////////////////////////// End of GUI Basic Functions and Side MENU /////////////////////////////////////////////////////////////////////////////////////
- /*
- Notes:
-
-
- */
 
 

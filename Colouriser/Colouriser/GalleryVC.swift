@@ -2,7 +2,7 @@
 //  Gallery.swift
 //  Colouriser
 //
-//  Created by Walter Bassage on 27/01/2018.
+//  Created by Group 1 on 1/1/18.
 //  Copyright © 2018 Group 1. All rights reserved.
 //
 // move code maybe to own VC

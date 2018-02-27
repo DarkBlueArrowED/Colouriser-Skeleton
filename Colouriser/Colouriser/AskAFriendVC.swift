@@ -21,11 +21,12 @@ class AskAFriendVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelega
     var orientation: AVCaptureVideoOrientation = .portrait
     let context = CIContext()
     
+    let concurrentQueue = DispatchQueue(label: "askAFriendQueue", attributes: .concurrent)
+    
     @IBOutlet weak var filteredImage: UIImageView!
     
     override func viewDidLoad() {
-        setupDevice()
-        setupInputOutput()
+        super.viewDidLoad()
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
@@ -50,17 +51,17 @@ class AskAFriendVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelega
     
     func setupInputOutput() {
         do {
-            //setupCorrectFramerate(currentCamera: currentCamera!)
+            setupCorrectFramerate(currentCamera: currentCamera!)
             let captureDeviceInput = try AVCaptureDeviceInput(device: currentCamera!)
             //depending what format you choose, the speed at which the pixels get filtered increases
-            captureSession.sessionPreset = AVCaptureSession.Preset.high
+            captureSession.sessionPreset = AVCaptureSession.Preset.hd1280x720
             
             if captureSession.canAddInput(captureDeviceInput) {
                 captureSession.addInput(captureDeviceInput)
             }
             let videoOutput = AVCaptureVideoDataOutput()
             
-            videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sample buffer delegate", attributes: []))
+            videoOutput.setSampleBufferDelegate(self, queue: self.concurrentQueue)
             if captureSession.canAddOutput(videoOutput) {
                 captureSession.addOutput(videoOutput)
             }
@@ -81,7 +82,7 @@ class AskAFriendVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelega
             do {
                 //set to 240fps - available types are: 30, 60, 120 and 240 and custom
                 // lower framerates cause major stuttering
-                if frameRates.maxFrameRate == 120 {
+                if frameRates.maxFrameRate == 240 {
                     try currentCamera.lockForConfiguration()
                     currentCamera.activeFormat = vFormat as AVCaptureDevice.Format
                     //for custom framerate set min max activeVideoFrameDuration to whatever you like, e.g. 1 and 180
@@ -99,7 +100,7 @@ class AskAFriendVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelega
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         connection.videoOrientation = orientation
         let videoOutput = AVCaptureVideoDataOutput()
-        videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
+        videoOutput.setSampleBufferDelegate(self, queue: concurrentQueue)
         
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         let cameraImage = CIImage(cvImageBuffer: pixelBuffer!)
@@ -108,61 +109,6 @@ class AskAFriendVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelega
         DispatchQueue.main.async {
             // Show default camera image
             self.filteredImage.image = UIImage(ciImage: cameraImage)
-        }
-    }
-    
-    
-    func convert(cmage:CIImage) -> UIImage {
-        let context:CIContext = CIContext.init(options: nil)
-        let cgImage:CGImage = context.createCGImage(cmage, from: cmage.extent)!
-        let image:UIImage = UIImage.init(cgImage: cgImage)
-        return image
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != .authorized {
-            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: {
-                (authorized) in
-                DispatchQueue.main.async {
-                    if authorized {
-                        self.setupInputOutput()
-                    }
-                }
-            })
-        }
-    }
-    
-    @IBAction func toggleFlashlight(_ sender: UISwitch) {
-        
-        switch sender.isOn {
-            
-        case true:
-            print("turn on flashlight")
-            
-            do {
-                try currentCamera?.lockForConfiguration()
-                currentCamera?.torchMode = .on
-                currentCamera?.unlockForConfiguration()
-            }
-            catch {
-                print("Cannot enable flashlight")
-            }
-            
-            break
-            
-        default:
-            print("turn off flashlight")
-            do {
-                try currentCamera?.lockForConfiguration()
-                currentCamera?.torchMode = .off
-                currentCamera?.unlockForConfiguration()
-            }
-            catch {
-                print("Cannot enable flashlight")
-            }
-            
-            break
         }
     }
     
@@ -191,7 +137,37 @@ class AskAFriendVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDelega
         sendSmsToFriend()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != .authorized {
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: {
+                (authorized) in
+            
+                self.concurrentQueue.async {
+                    if authorized {
+                        self.setupInputOutput()
+                    }
+                }
+            })
+        }
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.concurrentQueue.async {
+            self.setupDevice()
+            self.setupInputOutput()
+        }
+        
+        print("starting captureSession")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.concurrentQueue.async {
+            self.captureSession.stopRunning()
+        }
+        
+        print("stopping captureSession")
+    }
     
 }
 

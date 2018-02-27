@@ -19,12 +19,18 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var photoOutput: AVCapturePhotoOutput?
     var orientation: AVCaptureVideoOrientation = .portrait
     let context = CIContext()
+    
+    let concurrentQueue = DispatchQueue(label: "cameraFilterQueue", attributes: .concurrent)
 
     @IBOutlet weak var filteredImage: UIImageView!
     
     override func viewDidLoad() {
-        setupDevice()
-        setupInputOutput()
+        super.viewDidLoad()
+        
+        self.concurrentQueue.async {
+            self.setupDevice()
+            self.setupInputOutput()
+        }
     }
     
     func setupDevice() {
@@ -55,7 +61,7 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             }
             let videoOutput = AVCaptureVideoDataOutput()
             
-            videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "sample buffer delegate", attributes: []))
+            videoOutput.setSampleBufferDelegate(self, queue: self.concurrentQueue)
             if captureSession.canAddOutput(videoOutput) {
                 captureSession.addOutput(videoOutput)
             }
@@ -94,7 +100,7 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         connection.videoOrientation = orientation
         let videoOutput = AVCaptureVideoDataOutput()
-        videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue.main)
+        videoOutput.setSampleBufferDelegate(self, queue: self.concurrentQueue)
         
         let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         let cameraImage = CIImage(cvImageBuffer: pixelBuffer!)
@@ -125,20 +131,6 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         let cgImage:CGImage = context.createCGImage(cmage, from: cmage.extent)!
         let image:UIImage = UIImage.init(cgImage: cgImage)
         return image
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != .authorized {
-            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: {
-                (authorized) in
-                DispatchQueue.main.async {
-                    if authorized {
-                        self.setupInputOutput()
-                    }
-                }
-            })
-        }
     }
     
     @IBAction func toggleFlashlight(_ sender: UISwitch) {
@@ -172,5 +164,28 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             
             break
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) != .authorized {
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: {
+                (authorized) in
+                
+                self.concurrentQueue.async {
+                    if authorized {
+                        self.setupInputOutput()
+                    }
+                }
+            })
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.concurrentQueue.async {
+            self.captureSession.stopRunning()
+        }
+        
+        print("stopping captureSession")
     }
 }

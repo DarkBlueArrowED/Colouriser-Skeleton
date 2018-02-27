@@ -22,6 +22,9 @@ class ColourPickerVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     let concurrentQueue = DispatchQueue(label: "colourPickerQueue", attributes: .concurrent)
     
+    let syntehsiser = AVSpeechSynthesizer()
+    var synthesiserEnabled: Bool = false;
+    
     @IBOutlet weak var filteredImage: UIImageView!
     
     let recognizer = UITapGestureRecognizer()
@@ -41,6 +44,13 @@ class ColourPickerVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         filteredImage.addGestureRecognizer(recognizer)
     }
     
+    
+    @IBAction func toggleColourToSpeech(_ sender: Any) {
+        print("before ", synthesiserEnabled)
+        synthesiserEnabled = !synthesiserEnabled
+        print("after ", synthesiserEnabled)
+    }
+    
     @objc func screenHasbeenTapped() {
         print("screen tapped")
         if recognizer.state == UIGestureRecognizerState.recognized {
@@ -57,10 +67,10 @@ class ColourPickerVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             let blue: Int = Int(b * 255.0)
             var myString = "R: \(red) G: \(green) B: \(blue)"
             
-            //print(myString)
+//            print(myString)
             
             myString = getColourNameFromRGB(R: red, G: green, B: blue)
-            
+
             //print("returned string = \(myString)")
             self.showToast(message: myString as String)
         }
@@ -95,7 +105,7 @@ class ColourPickerVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         toastLabel.layer.cornerRadius = 10;
         toastLabel.clipsToBounds  =  true
         self.view.addSubview(toastLabel)
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 3.0, delay: 0.1, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
         }, completion: {(isCompleted) in
             toastLabel.removeFromSuperview()
@@ -132,6 +142,14 @@ class ColourPickerVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
                 }
                 //                self.showToast(message: colourName as String)
                 //                return colourName
+
+                if (self.synthesiserEnabled) {
+                    let utterance = AVSpeechUtterance(string: colourName)
+                    utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+                    utterance.rate = 0.5
+                    
+                    self.syntehsiser.speak(utterance)
+                }
                 
             } catch let jsonError {
                 print(jsonError)

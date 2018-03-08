@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var initialViewController: UIViewController
         
-        if (UserDefaults.standard.value(forKey: "name") as? String) != nil {
+        if (UserDefaults.standard.value(forKey: "typeOfColourblindness") as? String) != nil {
             initialViewController = storyboard.instantiateViewController(withIdentifier: "ViewController")
         } else {
             initialViewController = storyboard.instantiateInitialViewController()!

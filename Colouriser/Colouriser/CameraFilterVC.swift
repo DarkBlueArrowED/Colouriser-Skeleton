@@ -20,17 +20,35 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     var orientation: AVCaptureVideoOrientation = .portrait
     let context = CIContext()
     
+    var previouslySetColourblindness: String = ""
+    
     let concurrentQueue = DispatchQueue(label: "cameraFilterQueue", attributes: .concurrent)
 
     @IBOutlet weak var filteredImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.concurrentQueue.async {
             self.setupDevice()
             self.setupInputOutput()
         }
+        
+        // check if the value was correctly set
+        if (UserDefaults.standard.value(forKey: "typeOfColourblindness") as? String) != nil {
+            
+            print("Using: \(UserDefaults.standard.value(forKey: "typeOfColourblindness") as! String)")
+            
+            if (UserDefaults.standard.value(forKey: "typeOfColourblindness") as! String != "Select type of colourblindness: ") {
+                previouslySetColourblindness = UserDefaults.standard.value(forKey: "typeOfColourblindness") as! String
+            } else {
+                previouslySetColourblindness = "protanopia"
+            }
+        } else {  // default to a value
+            previouslySetColourblindness = "protanopia"
+        }
+        
+        
     }
     
     func setupDevice() {
@@ -121,7 +139,7 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         let rgbaImage = RGBAImage(image: captureImage)
         
-        let returnedImage = ImageProcess.setRGB(rgbaImage!, colourBlindness: "protanopia").toUIImage()
+        let returnedImage = ImageProcess.setRGB(rgbaImage!, colourBlindness: previouslySetColourblindness).toUIImage()
         
         return returnedImage!
     }

@@ -415,24 +415,30 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nW-Ne-ORM">
+                                            <rect key="frame" x="172" y="580" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <state key="normal" title="Skip"/>
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" identifier="toMainSegue" id="UTs-j9-0Kg"/>
+                                            </connections>
+                                        </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Etc-6h-9lD">
-                                            <rect key="frame" x="63" y="196" width="248.5" height="134"/>
+                                            <rect key="frame" x="27" y="173" width="320" height="320"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Enter your name to get started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-nt-Z6h">
-                                                    <rect key="frame" x="0.0" y="0.0" width="248.5" height="24"/>
+                                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Choose your type of colourblindness" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-nt-Z6h">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField verifyAmbiguity="off" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eiX-p6-3I9" userLabel="Name">
-                                                    <rect key="frame" x="0.0" y="39" width="248.5" height="30"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                                </textField>
+                                                <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HMi-5G-1JX">
+                                                    <rect key="frame" x="0.0" y="39" width="320" height="216"/>
+                                                </pickerView>
                                                 <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhV-2e-GCz" customClass="UIButtonX" customModule="Colouriser" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="84" width="248.5" height="50"/>
+                                                    <rect key="frame" x="0.0" y="270" width="320" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="yVH-Ho-2pq"/>
                                                     </constraints>
@@ -456,15 +462,6 @@
                                                 </button>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nW-Ne-ORM">
-                                            <rect key="frame" x="172" y="580" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <state key="normal" title="Skip"/>
-                                            <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" id="UTs-j9-0Kg"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </view>
                                 <blurEffect style="light"/>
@@ -473,7 +470,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
-                        <outlet property="nameTextField" destination="eiX-p6-3I9" id="eXs-zk-2BK"/>
+                        <outlet property="optionPicker" destination="HMi-5G-1JX" id="ez0-3W-lpi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mB4-wH-olO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,7 +507,7 @@
                                                         <state key="normal" image="Menu"/>
                                                         <connections>
                                                             <action selector="menuTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2iL-j6-kiy"/>
-                                                            <segue destination="BYZ-38-t0r" kind="show" id="VvT-x6-Aj9"/>
+                                                            <segue destination="BYZ-38-t0r" kind="show" identifier="backToHome" id="VvT-x6-Aj9"/>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sA9-w5-oI5">
@@ -533,6 +530,46 @@
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="YRZ-pc-T8m">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="589"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="qe2-n4-gej">
+                                                            <rect key="frame" x="27" y="33" width="320" height="320"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <subviews>
+                                                                <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Choose your type of colourblindness" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfF-jo-54z">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="24"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <pickerView contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0W8-LX-4pZ">
+                                                                    <rect key="frame" x="0.0" y="39" width="320" height="216"/>
+                                                                </pickerView>
+                                                                <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0p-W0-aMd" customClass="UIButtonX" customModule="Colouriser" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="270" width="320" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="hgi-YH-LGG"/>
+                                                                    </constraints>
+                                                                    <state key="normal" title="Done">
+                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="1"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                            <real key="value" value="1"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <connections>
+                                                                        <action selector="updateTypeOfColourblindness:" destination="lcS-NH-LSC" eventType="touchUpInside" id="tUe-NE-0o2"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
                                                 </view>
                                                 <blurEffect style="light"/>
                                             </visualEffectView>
@@ -547,6 +584,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="pickerView" destination="0W8-LX-4pZ" id="dyO-s5-svs"/>
+                        <outlet property="updateTypeOfColourblindnessButton" destination="a0p-W0-aMd" id="nuA-L8-6u0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPF-Dw-RlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -624,6 +665,6 @@
         <image name="backround" width="1080" height="1920"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7zI-zx-lJL"/>
+        <segue reference="VvT-x6-Aj9"/>
     </inferredMetricsTieBreakers>
 </document>

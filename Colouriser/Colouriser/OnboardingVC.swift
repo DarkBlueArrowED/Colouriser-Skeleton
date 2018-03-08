@@ -8,33 +8,42 @@
 
 import UIKit
 
-class OnboardingVC: UIViewController, UITextFieldDelegate {
+class OnboardingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var nameTextField: UITextField!
-
+    @IBOutlet weak var optionPicker: UIPickerView!
+    
+    var pickerData: [String] = [String]()
+    var typeOfColourblindnessChosen: String = ""
+    
     override func viewDidLoad() {
-        nameTextField.delegate = self
         super.viewDidLoad()
+        
+        self.optionPicker.delegate = self
+        self.optionPicker.dataSource = self
+        
+        pickerData = ["Select type of colourblindness: ", "protanopia", "deuteranopia"]
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+         return pickerData.count
     }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        nameTextField.resignFirstResponder()
-        return true
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
-
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if (nameTextField.text?.isEmpty)!  {
-            return false
-        }
-        return true
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("selected: \(pickerData[row])")
+        
+        typeOfColourblindnessChosen = pickerData[row]
     }
     
     @IBAction func ContinueClicked(_ sender: UIButton) {
-        UserDefaults.standard.set(nameTextField.text, forKey: "name")
+        UserDefaults.standard.set(typeOfColourblindnessChosen, forKey: "typeOfColourblindness")
         performSegue(withIdentifier: "toMainSegue", sender: self)
     }
     

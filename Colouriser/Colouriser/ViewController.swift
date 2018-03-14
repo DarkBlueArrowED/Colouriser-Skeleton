@@ -14,7 +14,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     @IBOutlet weak var menuView: UIView!
     
     @IBOutlet weak var profileImageView: UIImageViewX!
-    @IBOutlet weak var homeButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var breakButton: UIButton!
@@ -60,7 +59,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         })
         
         UIView.animate(withDuration: 0.4, delay: 0.12, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.homeButton.transform = .identity
             self.alertButton.transform = .identity
         })
 
@@ -82,7 +80,6 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         })
         
         UIView.animate(withDuration: 0.4, delay: 0.08, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.homeButton.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
             self.alertButton.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
         })
         

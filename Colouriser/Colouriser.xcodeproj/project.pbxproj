@@ -10,7 +10,6 @@
 		4DBD8B291F1C23E100B13C36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD8B281F1C23E100B13C36 /* AppDelegate.swift */; };
 		4DBD8B2C1F1C23E100B13C36 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD8B2B1F1C23E100B13C36 /* Model.swift */; };
 		4DBD8B2E1F1C23E100B13C36 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD8B2D1F1C23E100B13C36 /* Data.swift */; };
-		4DBD8B361F1C23E100B13C36 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD8B351F1C23E100B13C36 /* TableViewCell.swift */; };
 		4DBD8B391F1C23E100B13C36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBD8B381F1C23E100B13C36 /* ViewController.swift */; };
 		4DBD8B3B1F1C23E100B13C36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD8B3A1F1C23E100B13C36 /* Assets.xcassets */; };
 		4DBD8B3E1F1C23E100B13C36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBD8B3C1F1C23E100B13C36 /* LaunchScreen.storyboard */; };
@@ -45,7 +44,6 @@
 		4DBD8B281F1C23E100B13C36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DBD8B2B1F1C23E100B13C36 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		4DBD8B2D1F1C23E100B13C36 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		4DBD8B351F1C23E100B13C36 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4DBD8B381F1C23E100B13C36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4DBD8B3A1F1C23E100B13C36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DBD8B3D1F1C23E100B13C36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 			children = (
 				4DBD8B3C1F1C23E100B13C36 /* LaunchScreen.storyboard */,
 				B3B3C103201CA21E001B1911 /* Main.storyboard */,
-				4DBD8B351F1C23E100B13C36 /* TableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -276,7 +273,6 @@
 				4DBD8B591F1C27AE00B13C36 /* UIViewControllerX.swift in Sources */,
 				543AEF1E203D965B000B0AB0 /* AskAFriendVC.swift in Sources */,
 				4DBD8B521F1C27AE00B13C36 /* UIButtonX.swift in Sources */,
-				4DBD8B361F1C23E100B13C36 /* TableViewCell.swift in Sources */,
 				5464A7FB204589E900C03B85 /* ColourPickerVC.swift in Sources */,
 				4DBD8B571F1C27AE00B13C36 /* UITextFieldX.swift in Sources */,
 				4DBD8B2E1F1C23E100B13C36 /* Data.swift in Sources */,
@@ -420,7 +416,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = GUUT9QSKM3;
 				INFOPLIST_FILE = Colouriser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walterbassage.Colouriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -433,7 +429,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = GUUT9QSKM3;
 				INFOPLIST_FILE = Colouriser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walterbassage.Colouriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";

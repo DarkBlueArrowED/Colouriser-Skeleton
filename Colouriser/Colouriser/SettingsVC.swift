@@ -11,7 +11,6 @@ import UIKit
 class SettingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var updateTypeOfColourblindnessButton: UIButtonX!
-    
     @IBOutlet weak var pickerView: UIPickerView!
     
     var pickerData: [String] = [String]()

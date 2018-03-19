@@ -13,12 +13,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     @IBOutlet weak var screenCoverButton: UIButton!
     @IBOutlet weak var menuView: UIView!
     
-    @IBOutlet weak var profileImageView: UIImageViewX!
-    @IBOutlet weak var locationButton: UIButton!
-    @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var breakButton: UIButton!
-    @IBOutlet weak var alertButton: UIButton!
-    @IBOutlet weak var hotButton: UIButton!
+    @IBOutlet weak var imgColouriserLogo: UIImageViewX!
+    @IBOutlet weak var btnGallery: UIButton!
+    @IBOutlet weak var btnSetting: UIButton!
+    @IBOutlet weak var btnColourPicker: UIButton!
+    @IBOutlet weak var btnAskAFriend: UIButton!
+    @IBOutlet weak var btnFilter: UIButton!
     
     @IBOutlet weak var menuCurveImageView: UIImageView!
     
@@ -49,22 +49,22 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         UIView.animate(withDuration: 0.5, delay: 0.06, options: .curveEaseOut, animations: {
             self.menuCurveImageView.transform = .identity
         })
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.searchButton.transform = .identity
+        UIView.animate(withDuration: 0.4, delay: 0.14, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.btnSetting.transform = .identity
         })
         
         UIView.animate(withDuration: 0.4, delay: 0.06, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.locationButton.transform = .identity
-            self.breakButton.transform = .identity
+            self.btnGallery.transform = .identity
+            self.btnColourPicker.transform = .identity
         })
         
         UIView.animate(withDuration: 0.4, delay: 0.12, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.alertButton.transform = .identity
+            self.btnAskAFriend.transform = .identity
         })
 
          UIView.animate(withDuration: 0.4, delay: 0.18, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.profileImageView.transform = .identity
-            self.hotButton.transform = .identity
+            self.imgColouriserLogo.transform = .identity
+            self.btnFilter.transform = .identity
         })
     }
     
@@ -74,18 +74,18 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
             self.screenCoverButton.alpha = 0
         })
         
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.profileImageView.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
-            self.hotButton.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0.08, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.imgColouriserLogo.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
+            self.btnFilter.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
         })
         
         UIView.animate(withDuration: 0.4, delay: 0.08, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.alertButton.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
+            self.btnAskAFriend.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
         })
         
         UIView.animate(withDuration: 0.4, delay: 0.16, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.locationButton.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
-            self.breakButton.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
+            self.btnGallery.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
+            self.btnColourPicker.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
         })
         
         UIView.animate(withDuration: 0.5, delay: 0.08, options: .curveEaseOut, animations: {
@@ -93,8 +93,8 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         })
         
         //This is for a search feature but will probly never be used - WB
-        UIView.animate(withDuration: 0.4, delay: 0.21, options: [.curveEaseOut, .allowUserInteraction], animations: {
-            self.searchButton.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0.08, options: [.curveEaseOut, .allowUserInteraction], animations: {
+            self.btnSetting.transform = CGAffineTransform(translationX: -self.menuView.frame.width, y: 0)
         }) { success in
             self.menuView.isHidden = true
         }

@@ -126,14 +126,14 @@ class CameraFilterVC: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         DispatchQueue.main.async {
             
-            self.filteredImage.image = self.doShitWithGGBAImage(givenImage: cameraImage)
+            self.filteredImage.image = self.doStuffWithGGBAImage(givenImage: cameraImage)
             
             // Show default camera image
             //self.filteredImage.image = UIImage(ciImage: cameraImage)
         }
     }
     
-    func doShitWithGGBAImage(givenImage: CIImage) -> UIImage {
+    func doStuffWithGGBAImage(givenImage: CIImage) -> UIImage {
         
         let captureImage = convert(cmage: givenImage)
         

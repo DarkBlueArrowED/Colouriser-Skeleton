@@ -22,7 +22,7 @@ class SettingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource 
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         
-        pickerData = ["Select type of colourblindness: ", "protanopia", "deuteranopia"]
+        pickerData = ["Select type of colourblindness: ", "protanopia", "protanomaly", "deuteranopia", "deuteranomaly"]
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

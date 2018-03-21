@@ -21,7 +21,7 @@ class OnboardingVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSour
         self.optionPicker.delegate = self
         self.optionPicker.dataSource = self
         
-        pickerData = ["Select type of colourblindness: ", "protanopia", "deuteranopia"]
+        pickerData = ["Select type of colourblindness: ", "protanopia", "protanomaly", "deuteranopia", "deuteranomaly"]
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

@@ -420,7 +420,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = GUUT9QSKM3;
 				INFOPLIST_FILE = Colouriser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walterbassage.Colouriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -433,7 +433,7 @@
 			buildSettings = {
 				DEVELOPMENT_TEAM = GUUT9QSKM3;
 				INFOPLIST_FILE = Colouriser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.walterbassage.Colouriser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
